@@ -1,0 +1,14 @@
+name pptpd
+
+require-mschap-v2
+require-mppe-128
+
+proxyarp
+nodefaultroute
+
+lock
+nobsdcomp
+
+<% @dns.each do |server| %>
+ms-dns <%= server %>
+<% end %>

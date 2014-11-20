@@ -1,0 +1,8 @@
+# pptpd rules as described in https://help.ubuntu.com/community/PPTPServer#Setup_IP_Forwarding
+-A INPUT -p tcp --dport 1723 -j ACCEPT
+-A FORWARD -p tcp --syn -s <%= @network %>/24 -j TCPMSS --set-mss 1356
+-A FORWARD -i ppp0 -j ACCEPT
+-A FORWARD -o ppp0 -j ACCEPT
+*nat
+-A POSTROUTING -s <%= @network %>/24 -o <%= @interface %> -j MASQUERADE
+COMMIT
